@@ -38,10 +38,13 @@ export function CarouselHero() {
         slideSize="100%" 
         plugins={[autoplay.current]}
         style={{
+          width:'100%',
         }}
       >
         {images.map((img) => (
-          <Carousel.Slide key={img.id}>
+          <Carousel.Slide key={img.id} style={{
+            width:'100%',
+          }}>
             <div style={{ position: 'relative', height: 720 }}>
               <Image
                 src={img.url}

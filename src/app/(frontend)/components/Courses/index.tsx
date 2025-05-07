@@ -70,9 +70,9 @@ export function Courses(){
                       variant="filled"
                       color="#83013E"
                       radius="md"
+                      w={{base:"320px", sm:"380px"}}
                       style={{ 
                         height: 'auto',
-                        width: '380px',
                         display: 'flex',
                         justifyContent: 'left'
                       }}>

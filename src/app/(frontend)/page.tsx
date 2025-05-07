@@ -9,6 +9,7 @@ import './styles.css'
 import { HeroSection } from './components/HeroSection'
 import { AboutUs } from './components/AboutUs'
 import { Courses } from './components/Courses'
+import { Testimonials } from './components/Testimonials'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -23,6 +24,7 @@ export default async function HomePage() {
       <HeroSection/>
       <AboutUs />
       <Courses />
+      <Testimonials />
     </div>
   )
 }
