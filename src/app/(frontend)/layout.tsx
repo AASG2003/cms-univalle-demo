@@ -12,7 +12,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
+      <body style={{
+        backgroundColor:'#EAEAEA',
+      }}>
         <MantineProvider defaultColorScheme="light">
           <Navbar />
           {children}

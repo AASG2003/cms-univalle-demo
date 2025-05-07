@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url'
 
 import config from '@/payload.config'
 import './styles.css'
-import Carousel_hero from './components/Carousel_hero'
+import { HeroSection } from './components/HeroSection'
+import { AboutUs } from './components/AboutUs'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -18,7 +19,8 @@ export default async function HomePage() {
 
   return (
     <div>
-      <Carousel_hero/>
+      <HeroSection/>
+      <AboutUs />
     </div>
   )
 }

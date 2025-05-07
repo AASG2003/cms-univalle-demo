@@ -13,11 +13,23 @@ import {
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import "@mantine/core/styles.css"
+import { useEffect, useState } from 'react';
 
 export function Navbar() {
   const [opened, { toggle, close }] = useDisclosure(false);
   const theme = useMantineTheme();
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+  const [atTop, setAtTop] = useState(true);
+
+  useEffect(() => {
+    function handleScroll() {
+      setAtTop(window.scrollY === 0);
+    }
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const leftButtons = (
     <Group gap="sm">
@@ -32,10 +44,10 @@ export function Navbar() {
 
   const rightButtons = (
     <Group gap="sm">
-      <Button variant="default" size="sm" color='black'>
+      <Button variant="subtle" size="sm" color='white'>
         Cursos
       </Button>
-      <Button variant="subtle" size="sm"  color='black'>
+      <Button variant="subtle" size="sm"  color='white'>
         Recursos
       </Button>
     </Group>
@@ -48,10 +60,17 @@ export function Navbar() {
         pos="fixed"
         top={0}
         w="100%"
-        bg="#83013E"
         px="md"
         py="sm"
-        style={{ zIndex: 1000, boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          width: '100%',
+          zIndex: 1000,
+          transition: 'background-color 0.3s ease',
+          backgroundColor: atTop ? 'transparent' : '#83013E',
+          borderBottom: 'none',
+        }}
       >
         <Grid align="center">
           {!isMobile && (
@@ -68,7 +87,6 @@ export function Navbar() {
             </Text>
           </Grid.Col>
 
-          {/* DERECHA */}
           <Grid.Col span={isMobile ? 6 : 4}>
             <Flex justify={'flex-end'}>
               {isMobile ? (
