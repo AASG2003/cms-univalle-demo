@@ -8,6 +8,7 @@ import config from '@/payload.config'
 import './styles.css'
 import { HeroSection } from './components/HeroSection'
 import { AboutUs } from './components/AboutUs'
+import { Courses } from './components/Courses'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -21,6 +22,7 @@ export default async function HomePage() {
     <div>
       <HeroSection/>
       <AboutUs />
+      <Courses />
     </div>
   )
 }

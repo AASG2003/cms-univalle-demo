@@ -52,10 +52,13 @@ export function AboutUs() {
                   backgroundColor: 'white',
                   width: '190px',
                   height: '150px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 <Text c='#83013E' ta="center" fw={600}>1mil+</Text>
-                <Text ta="center">Estudiantes</Text>
+                <Text ta="center" mb='20'>Estudiantes</Text>
+                <Image alt = 'estudiantes' src='/3 imgs.png' height='40' width='120'/>
               </Card>
             </Group>
           </Container>
