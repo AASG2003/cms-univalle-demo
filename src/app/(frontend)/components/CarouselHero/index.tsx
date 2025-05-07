@@ -14,7 +14,7 @@ interface MediaItem {
 
 export function CarouselHero() {
   const [images, setImages] = useState<MediaItem[]>([]);
-  const autoplay = useRef(Autoplay({ delay: 2000 }));
+  const autoplay = useRef(Autoplay({ delay: 10000 }));
 
   useEffect(() => {
     async function fetchImages() {
