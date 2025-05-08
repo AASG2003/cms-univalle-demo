@@ -26,10 +26,6 @@ export function CarouselHero() {
     fetchImages();
   }, []);
 
-  images.map((img) => {
-    console.log(img);
-  })
-
   return (
     <>
       <Carousel 

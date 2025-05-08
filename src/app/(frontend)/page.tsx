@@ -23,7 +23,6 @@ export default async function HomePage() {
 
   return (
     <div>
-      <Navbar />
       <HeroSection/>
       <AboutUs />
       <Courses />

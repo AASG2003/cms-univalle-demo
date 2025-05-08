@@ -32,11 +32,11 @@ export function Navbar() {
 
   const leftButtons = (
     <Group gap="sm">
-      <Button variant="subtle" size="sm"  color='white'>
+      <Button variant="subtle" size="sm"  color='white' component='a' href='/'>
         Inicio
       </Button>
-      <Button variant="subtle" size="sm"  color='white'>
-        About
+      <Button variant="subtle" size="sm"  color='white' component='a' href='/noticias'>
+        Noticias
       </Button>
     </Group>
   );
