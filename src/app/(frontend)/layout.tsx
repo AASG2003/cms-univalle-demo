@@ -1,7 +1,7 @@
 import React from 'react'
 import { MantineProvider } from '@mantine/core'
 import "@mantine/core/styles.css"
-import { HomeFooter } from './components/Footer/HomeFooter'
+import { Footer } from './components/Footer'
 import { Navbar } from './components/Navbar'
 
 export const metadata = {
@@ -15,12 +15,17 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
         backgroundColor:'#EAEAEA',
       }}>
         <MantineProvider defaultColorScheme="light">
           <Navbar />
+          <main style={{ flexGrow: 1 }}>
             {children}
-          <HomeFooter/>
+          </main>
+          <Footer/>
         </MantineProvider>
       </body>
     </html>

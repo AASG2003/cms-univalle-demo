@@ -5,12 +5,7 @@ import '@mantine/carousel/styles.css';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-
-interface MediaItem {
-  id: number;
-  alt: string;
-  url: string;
-}
+import { MediaItem } from '@/app/types/common';
 
 export function CarouselHero() {
   const [images, setImages] = useState<MediaItem[]>([]);

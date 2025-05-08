@@ -1,13 +1,23 @@
-import { headers as getHeaders } from 'next/headers.js'
-import { getPayload } from 'payload'
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Card, Flex, Input, Image, Skeleton, Stack, Text } from '@mantine/core'
+import { IconZoom } from '@tabler/icons-react'
+import { NoticiaResumen } from '@/app/types/news';
 
-import config from '@/payload.config'
-import { Box, Grid, GridCol, Input, Stack, Text } from '@mantine/core'
-import { IconAt, IconZoom } from '@tabler/icons-react'
-
-export default async function NewsPage() {
-  const payloadConfig = await config
+export default function NewsPage() {
+  
+    const [noticias, setNoticias] = useState<NoticiaResumen[]>([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      async function fetchNoticias() {
+        const res = await fetch('/local_api/noticias?limit=5');
+        const data = await res.json();
+        setNoticias(data);
+        setLoading(false);
+      }
+      fetchNoticias();
+    }, []);
 
   return (
     <div>
@@ -25,12 +35,50 @@ export default async function NewsPage() {
         <Stack justify='center' align='center' style={{
           height:'100%'
         }}>
-          <Text ta="center" size='40' fw={600} inline c='white' w={"55%"}>
+          <Text ta="center" size='40' fw={600} inline c='white' w={"50%"}>
             Enterate de las novedades de academias
           </Text>
-          <Input placeholder="Ingresa un topico" rightSection={<IconZoom size={16} />} w={"55%"} mt={30} radius={15}/>
+          <Input placeholder="Ingresa un topico" rightSection={<IconZoom size={16} />} w={"40%"} mt={30} radius={15}/>
         </Stack> 
       </Box>
+      <Stack p={50}
+      style={{
+          height:'100%'
+        }}>
+        <Text ta="left" size='40' fw={600} inline c='#83013E' w={"50%"}>
+          Noticias
+        </Text>
+        <Flex p={30}>
+          <Skeleton visible={loading} w={400} h={"auto"}>
+            {noticias.map((noticia) => (
+              <Card w={400} shadow="sm" padding="lg" radius="25" withBorder key={noticia.id}>
+                <Card.Section>
+                  <Image
+                    src={noticia.imagenDestacada.url}
+                    alt="Norway"
+                  />
+                </Card.Section>
+                <Stack
+                  m={20}
+                  gap={20}
+                  align="flex-start"
+                >
+                  <Button variant="filled" color="#83013E" radius="lg" w={190} mt={20} component='a' href={`./noticias/${noticia.id}`}>Ver noticia</Button>
+                  <Text fw={500} size='12' inline>
+                  {new Date(noticia.fecha).toLocaleDateString()}
+                  </Text>
+                  <Text c='#83013E' size='24' inline>
+                    {noticia.tituloPrincipal}
+                  </Text>
+                  <Text lineClamp={3}>
+                    {noticia.parrafo1}
+                  </Text>
+                </Stack>
+              </Card>
+            ))}
+          </Skeleton>
+        </Flex>
+      </Stack> 
     </div>   
   )
 }

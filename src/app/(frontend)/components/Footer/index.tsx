@@ -2,7 +2,7 @@
 
 import { Box, Grid, GridCol, Image, Stack, Text} from "@mantine/core";
 
-export function HomeFooter(){
+export function Footer(){
   return(
     <footer>
       <Box
@@ -19,7 +19,8 @@ export function HomeFooter(){
         <Grid pt={50}>
           <GridCol span={3}>
             <Image
-              src={'./logo_academiasTI.png'}
+              alt="logo academias"
+              src={'/logo_academiasTI.png'}
             >
             </Image>
             <Text c={'white'} mt={30}>
