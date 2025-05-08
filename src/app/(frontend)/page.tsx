@@ -10,6 +10,8 @@ import { HeroSection } from './components/HeroSection'
 import { AboutUs } from './components/AboutUs'
 import { Courses } from './components/Courses'
 import { Testimonials } from './components/Testimonials'
+import { NewsHome } from './components/NewsHome'
+import { Navbar } from './components/Navbar'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -21,10 +23,12 @@ export default async function HomePage() {
 
   return (
     <div>
+      <Navbar />
       <HeroSection/>
       <AboutUs />
       <Courses />
       <Testimonials />
+      <NewsHome />
     </div>
   )
 }

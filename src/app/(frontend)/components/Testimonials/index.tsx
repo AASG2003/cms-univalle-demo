@@ -20,14 +20,14 @@ export function Testimonials(){
       <Text ta="center" size='40' fw={600} inline c='white' mt={0} w={"30%"}>
         Testimonios de estudiantes
       </Text>
-      <Text ta="center" inline c='white' pt={50} w={"15%"}>
+      <Text ta="center" inline c='white' pt={30} w={"15%"}>
         Conoce los testimonios de 
         nuestros estudiantes
       </Text>
       <Carousel
         slideSize="100%" 
         plugins={[autoplay.current]}
-        mt={50}
+        mt={30}
         style={{
           height:'auto',
           width:'100%',

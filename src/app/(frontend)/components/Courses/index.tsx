@@ -46,9 +46,9 @@ export function Courses(){
                 </Text>
             </GridCol>
             <GridCol span={6} offset={3} mt={30}>
-                <Text ta={'center'}>
+              <Text ta={'center'}>
                 Con mas de 20 areas para escoger cursos de distintas plataformas
-                </Text>
+              </Text>
             </GridCol>
             <GridCol span={10} offset={1} mt={30} style={{
               justifyContent: 'center',

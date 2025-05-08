@@ -1,6 +1,7 @@
 import React from 'react'
-import { Navbar } from './components/Navbar'
 import { MantineProvider } from '@mantine/core'
+import "@mantine/core/styles.css"
+import { HomeFooter } from './components/Footer/HomeFooter'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -16,8 +17,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         backgroundColor:'#EAEAEA',
       }}>
         <MantineProvider defaultColorScheme="light">
-          <Navbar />
           {children}
+          <HomeFooter/>
         </MantineProvider>
       </body>
     </html>

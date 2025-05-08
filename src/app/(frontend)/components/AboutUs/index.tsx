@@ -2,7 +2,7 @@
 
 import '@mantine/carousel/styles.css'; 
 import Image from 'next/image';
-import { Button, Card, Container, Flex, Grid, Group, Text } from '@mantine/core';
+import { Button, Card, Container, Grid, Group, Text } from '@mantine/core';
 
 
 export function AboutUs() {

@@ -12,7 +12,6 @@ import {
   Flex,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import "@mantine/core/styles.css"
 import { useEffect, useState } from 'react';
 
 export function Navbar() {
