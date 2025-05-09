@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation';
-import { Box, Flex, Grid, GridCol, Image, Paper, Stack, Text } from '@mantine/core'
+import { Anchor, Box, Button, Flex, Grid, GridCol, Image, Paper, Stack, Text } from '@mantine/core'
 import { notFound } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import '@mantine/carousel/styles.css';
@@ -78,6 +78,9 @@ export default function Noticia() {
                 <Text ta="left">
                   {curso?.descripcion}
                 </Text>
+                <Anchor href={curso?.link} target="_blank" rel="noopener noreferrer">
+                  <Button color="#83013E">Ingresar</Button>
+                </Anchor>
             </Stack>
           </GridCol>
           <GridCol span={3}>
