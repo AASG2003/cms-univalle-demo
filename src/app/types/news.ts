@@ -8,6 +8,7 @@ export interface NoticiaResumen {
   imagenDestacada: MediaItem;
   parrafo1: string;
 }
+
 export interface NoticiaConImagen extends Omit<Noticia, 'imagenDestacada' | 'carruselImagenes'> {
   imagenDestacada: Media;
   carruselImagenes?: {

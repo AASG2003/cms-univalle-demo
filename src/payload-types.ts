@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     noticias: Noticia;
+    courses: Course;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,12 +80,13 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     noticias: NoticiasSelect<false> | NoticiasSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   globals: {};
   globalsSelect: {};
@@ -120,7 +122,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
+  id: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -137,7 +139,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -156,8 +158,8 @@ export interface Media {
  * via the `definition` "noticias".
  */
 export interface Noticia {
-  id: number;
-  imagenDestacada: number | Media;
+  id: string;
+  imagenDestacada: string | Media;
   fecha: string;
   tituloPrincipal: string;
   tituloSecundario1: string;
@@ -178,7 +180,7 @@ export interface Noticia {
   };
   carruselImagenes?:
     | {
-        imagen: number | Media;
+        imagen: string | Media;
         descripcion?: string | null;
         id?: string | null;
       }[]
@@ -206,27 +208,55 @@ export interface Noticia {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: string;
+  imagen?: (string | null) | Media;
+  nombre: string;
+  academia: string;
+  descripcion: string;
+  nivel: string;
+  requisitos?: string | null;
+  duracionHoras: number;
+  duracionMinutos?: number | null;
+  link: string;
+  categorias?:
+    | {
+        nombre?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: string;
   document?:
     | ({
         relationTo: 'users';
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: 'noticias';
-        value: number | Noticia;
+        value: string | Noticia;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: string | Course;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -236,10 +266,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: string;
   user: {
     relationTo: 'users';
-    value: number | User;
+    value: string | User;
   };
   key?: string | null;
   value?:
@@ -259,7 +289,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
+  id: string;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -319,6 +349,29 @@ export interface NoticiasSelect<T extends boolean = true> {
   parrafo2?: T;
   loDijo?: T;
   autoria?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses_select".
+ */
+export interface CoursesSelect<T extends boolean = true> {
+  imagen?: T;
+  nombre?: T;
+  academia?: T;
+  descripcion?: T;
+  nivel?: T;
+  requisitos?: T;
+  duracionHoras?: T;
+  duracionMinutos?: T;
+  link?: T;
+  categorias?:
+    | T
+    | {
+        nombre?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

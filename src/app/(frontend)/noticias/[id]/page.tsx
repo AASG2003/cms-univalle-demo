@@ -1,23 +1,22 @@
 'use client'
 
 import { useParams } from 'next/navigation';
-import { Media, Noticia } from '@/payload-types'
-import { Box, Flex, Grid, GridCol, Image, Stack, Text } from '@mantine/core'
+import { Box, Flex, Grid, GridCol, Image, Paper, Stack, Text } from '@mantine/core'
 import { notFound } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IconCalendarWeek, IconQuoteFilled } from '@tabler/icons-react';
 import { RichText as RichTextConverter } from '@payloadcms/richtext-lexical/react'
 import { Carousel } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
+import { NoticiaConImagen, NoticiaResumen } from '@/app/types/news';
 
-export default function NoticiaDetalle() {
-  interface NoticiaConImagen extends Noticia {
-    imagenDestacada: Media;
-  }
+export default function Noticia() {
+
 
   const params = useParams();
   const id = params?.id as string;
   const [noticia, setNoticia] = useState<NoticiaConImagen>();
+  const [noticias, setNoticias] = useState<NoticiaResumen[]>([]);
   
   useEffect(() => {
     async function fetchNoticias() {
@@ -27,7 +26,16 @@ export default function NoticiaDetalle() {
     }
     fetchNoticias();
   }, [id]);
-  console.log(noticia)
+
+  useEffect(() => {
+    async function fetchNoticias() {
+      const res = await fetch('/local_api/noticias?limit=5');
+      const data = await res.json();
+      setNoticias(data);
+    }
+    fetchNoticias();
+  }, []);
+  
 
   try {
     return(
@@ -57,7 +65,9 @@ export default function NoticiaDetalle() {
             <GridCol offset={1} span={7}>
               <Stack gap={30} align='center' justify='center'>
                 <Image alt={'imagen principal'} src={noticia?.imagenDestacada.url}/>
-                <Flex>
+                <Flex w={"100%"}
+                justify={'left'}
+                >
                   <IconCalendarWeek size={15}/>
                   <Text ml={10} style={{
                   }}>
@@ -67,14 +77,12 @@ export default function NoticiaDetalle() {
                 <Text ta="left" size='38' fw={600} inline c='#83013E'>
                   Reconocimiento Internacional Único para Univalle
                 </Text>
-                <Text>
-                  <RichTextConverter data={noticia!.parrafo1}/>
-                </Text>
+                <RichTextConverter data={noticia!.parrafo1}/>
                 {Array.isArray(noticia?.carruselImagenes) &&
                   noticia.carruselImagenes.some(item => typeof item.imagen === 'object' && item.imagen?.url) && (
                     <Carousel
                       slideSize={{ base: '100%', sm: '50%' }}
-                      slideGap={{ base: 'xl', sm: 2 }}
+                      slideGap={{ base: 'xl', sm: 5 }}
                       emblaOptions={{ align: 'start', slidesToScroll: 2 }}
                     >
                       {noticia.carruselImagenes.map((item, index) =>
@@ -93,19 +101,40 @@ export default function NoticiaDetalle() {
                       )}
                     </Carousel>
                 )}
-                <Text ta="left" size='38' fw={600} inline c='#83013E'>
+                <Text ta="left" size='38' fw={600} inline c='#83013E' w={"100%"}>
                   {noticia?.tituloSecundario2}
                 </Text>
-                <Text>
-                  <RichTextConverter data={noticia!.parrafo2}/>
-                </Text>
-                <IconQuoteFilled color='#83013E'/>
+                
+                <RichTextConverter data={noticia!.parrafo2}/>
+                
+                {noticia?.loDijo && (
+                  <>
+                    <IconQuoteFilled color="#83013E" size={50} />
+                    <Text ta="center" fw={800} w="60%">
+                      {noticia.loDijo}
+                    </Text>
+                  </>
+                )}
+
                 <Text ta={'center'}>
-                  {noticia!.loDijo}
+                  {noticia!.autoria}
                 </Text>
               </Stack>
             </GridCol>
-            <GridCol span={3}>
+            <GridCol span={3} ml={50}>
+              <Stack justify='flex-start' align='stretch'>
+                <Text w={"100%"} c='#83013E' size='25' inline>
+                  Noticias Recientes
+                </Text>
+                {
+                  noticias.map((item) => (
+                    <Paper key={item.id} p={25} radius={25} component='a' href={`./${item.id}`} shadow="xl" c={"black"}>
+                      <Text>{new Date(item.fecha).toLocaleDateString()}</Text>
+                      <Text fw={600}>{item.tituloPrincipal}</Text>
+                    </Paper>
+                  ))
+                }
+              </Stack>
             </GridCol>
           </Grid>
         </Box>

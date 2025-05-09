@@ -1,25 +1,12 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
 import React from 'react'
-import { fileURLToPath } from 'url'
-
-import config from '@/payload.config'
 import './styles.css'
 import { HeroSection } from './components/HeroSection'
 import { AboutUs } from './components/AboutUs'
-import { Courses } from './components/Courses'
+import { Courses } from './components/CoursesHome'
 import { Testimonials } from './components/Testimonials'
 import { NewsHome } from './components/NewsHome'
-import { Navbar } from './components/Navbar'
 
 export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
   return (
     <div>

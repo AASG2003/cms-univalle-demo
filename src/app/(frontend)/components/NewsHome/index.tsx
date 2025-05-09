@@ -32,16 +32,16 @@ export function NewsHome(){
           <Text>
             Enterate de las novedades sobre academias TI
           </Text>
-          <Button variant="filled" color="#83013E" radius="xl" w={180} mt={20}>Ver Cursos</Button>
+          <Button variant="filled" color="#83013E" radius="xl" w={180} mt={20} component='a' href='./noticias/'>Ver Noticias</Button>
         </Stack>
       </Grid.Col>
       <Grid.Col span={12} pt={50}>
-        <Flex pl={30} gap="md" wrap="wrap" justify={'center'}>
-          <Skeleton visible={loading} w={400} h={"auto"}>
+        <Flex pl={30} gap="md" wrap="wrap" justify={'center'} direction="row">
             {noticias.map((noticia) => (
-              <Card w={400} shadow="sm" padding="lg" radius="25" withBorder key={noticia.id}>
+              <Card w={400}  shadow="sm" padding="lg" radius="25" withBorder key={noticia.id}>
                 <Card.Section>
                   <Image
+                    h={300}
                     src={noticia.imagenDestacada.url}
                     alt="Norway"
                   />
@@ -51,7 +51,7 @@ export function NewsHome(){
                   gap={20}
                   align="flex-start"
                 >
-                  <Button variant="filled" color="#83013E" radius="lg" w={190} mt={20}>Ver Cursos</Button>
+                  <Button variant="filled" color="#83013E" radius="lg" w={190} mt={20} component='a' href={`./noticias/${noticia.id}`}>Ver noticia</Button>
                   <Text fw={500} size='12' inline>
                   {new Date(noticia.fecha).toLocaleDateString()}
                   </Text>
@@ -64,7 +64,6 @@ export function NewsHome(){
                 </Stack>
               </Card>
             ))}
-          </Skeleton>
         </Flex>
       </Grid.Col>
     </Grid>

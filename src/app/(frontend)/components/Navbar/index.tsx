@@ -43,11 +43,11 @@ export function Navbar() {
 
   const rightButtons = (
     <Group gap="sm">
-      <Button variant="subtle" size="sm" color='white'>
+      <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
         Cursos
       </Button>
-      <Button variant="subtle" size="sm"  color='white'>
-        Recursos
+      <Button variant="subtle" size="sm"  color='white' component='a' href='/faq'>
+        FAQ
       </Button>
     </Group>
   );

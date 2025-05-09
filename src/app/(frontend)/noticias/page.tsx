@@ -7,14 +7,12 @@ import { NoticiaResumen } from '@/app/types/news';
 export default function NewsPage() {
   
     const [noticias, setNoticias] = useState<NoticiaResumen[]>([]);
-    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
       async function fetchNoticias() {
         const res = await fetch('/local_api/noticias?limit=5');
         const data = await res.json();
         setNoticias(data);
-        setLoading(false);
       }
       fetchNoticias();
     }, []);
@@ -48,12 +46,12 @@ export default function NewsPage() {
         <Text ta="left" size='40' fw={600} inline c='#83013E' w={"50%"}>
           Noticias
         </Text>
-        <Flex p={30}>
-          <Skeleton visible={loading} w={400} h={"auto"}>
+        <Flex pl={30} gap="md" wrap="wrap" justify={'center'} direction="row">
             {noticias.map((noticia) => (
               <Card w={400} shadow="sm" padding="lg" radius="25" withBorder key={noticia.id}>
                 <Card.Section>
                   <Image
+                    h={300}
                     src={noticia.imagenDestacada.url}
                     alt="Norway"
                   />
@@ -76,7 +74,6 @@ export default function NewsPage() {
                 </Stack>
               </Card>
             ))}
-          </Skeleton>
         </Flex>
       </Stack> 
     </div>   

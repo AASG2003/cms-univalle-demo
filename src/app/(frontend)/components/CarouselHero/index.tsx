@@ -1,25 +1,27 @@
 'use client';
 
 import { Carousel } from '@mantine/carousel';
-import '@mantine/carousel/styles.css'; 
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { Image } from '@mantine/core';
+import '@mantine/carousel/styles.css';
+import { useRef} from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-import { MediaItem } from '@/app/types/common';
 
 export function CarouselHero() {
-  const [images, setImages] = useState<MediaItem[]>([]);
   const autoplay = useRef(Autoplay({ delay: 10000 }));
-
-  useEffect(() => {
-    async function fetchImages() {
-      const res = await fetch('/api/media');
-      const data = await res.json();
-      setImages(data.docs);
-    }
-
-    fetchImages();
-  }, []);
+  const images = [
+    {
+      url: 'https://www.univalle.edu/wp-content/uploads/2022/08/lapaz_des.jpg',
+      alt: 'La Paz',
+    },
+    {
+      url: '/foto_sedepaisaje01.jpg',
+      alt: 'Cochabamba',
+    },
+    {
+      url: '/santa_des.jpg',
+      alt: 'Santa Cruz',
+    },
+  ];
 
   return (
     <>
@@ -33,16 +35,14 @@ export function CarouselHero() {
         }}
       >
         {images.map((img) => (
-          <Carousel.Slide key={img.id} style={{
+          <Carousel.Slide key={img.url} style={{
             width:'100%',
           }}>
             <div style={{ position: 'relative', height: 720 }}>
               <Image
                 src={img.url}
                 alt={img.alt}
-                fill
                 style={{ objectFit: 'cover' }}
-                priority
               />
             </div>
           </Carousel.Slide>

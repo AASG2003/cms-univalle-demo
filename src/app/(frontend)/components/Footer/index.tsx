@@ -33,16 +33,16 @@ export function Footer(){
               <Text c={'white'} mt={20} fw={700}>
                 Links
               </Text>
-              <Text c={'white'} mt={20}>
+              <Text c={'white'} mt={20} component="a" href="/">
                 Inicio
               </Text>
-              <Text c={'white'} mt={10}>
+              <Text c={'white'} mt={10} component="a" href="/noticias">
                 Noticias
               </Text>
-              <Text c={'white'} mt={10}>
+              <Text c={'white'} mt={10} component="a" href="/cursos">
                 Cursos
               </Text>
-              <Text c={'white'} mt={10}>
+              <Text c={'white'} mt={10} component="a" href="/faq">
                 FAQ
               </Text>
             </Stack>
@@ -52,10 +52,10 @@ export function Footer(){
               <Text c={'white'} mt={20} fw={700}>
                 Siguenos
               </Text>
-              <Text c={'white'} mt={20}>
+              <Text c={'white'} mt={20} component="a" href="https://www.facebook.com/univallelpz">
                 Facebook
               </Text>
-              <Text c={'white'} mt={10}>
+              <Text c={'white'} mt={10} component="a" href="https://www.instagram.com/univalle_lapaz/">
                 Instagram
               </Text>
             </Stack>

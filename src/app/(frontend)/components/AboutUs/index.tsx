@@ -1,8 +1,7 @@
 'use client';
 
 import '@mantine/carousel/styles.css'; 
-import Image from 'next/image';
-import { Button, Card, Container, Grid, Group, Text } from '@mantine/core';
+import { Button, Card, Container, Grid, Group, Image, Text } from '@mantine/core';
 
 
 export function AboutUs() {
@@ -110,7 +109,7 @@ export function AboutUs() {
             height: '100%',
           }}>
             <Group justify="flex-start">
-              <Image alt='Sede' src='/Pearson VUE Authorized Test Center_US 1.png' width={0} height={0}
+              <Image alt='Sede' src='/Pearson VUE Authorized Test Center_US 1.png'
                 style={{
                   width: 'auto',         
                   height: '80%',
