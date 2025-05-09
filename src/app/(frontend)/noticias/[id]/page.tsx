@@ -70,26 +70,29 @@ export default function NoticiaDetalle() {
                 <Text>
                   <RichTextConverter data={noticia!.parrafo1}/>
                 </Text>
-                <Carousel
-                  slideSize={{ base: '100%', sm: '50%' }}
-                  slideGap={{ base: 'xl', sm: 2 }}
-                  emblaOptions={{ align: 'start', slidesToScroll: 2 }}
-                >
-                  {noticia?.carruselImagenes?.map((item, index) => (
-                    item.imagen && typeof item.imagen === 'object' && (
-                      <Carousel.Slide key={item.imagen.id || index}>
-                        <div style={{ position: 'relative', height: 300, width: '100%' }}>
-                          <Image
-                            src={item.imagen.url}
-                            alt={item.imagen.alt || 'Imagen del carrusel'}
-                            style={{ objectFit: 'cover', borderRadius: 8 }}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                          />
-                        </div>
-                      </Carousel.Slide>
-                    )
-                  ))}
-                </Carousel>
+                {Array.isArray(noticia?.carruselImagenes) &&
+                  noticia.carruselImagenes.some(item => typeof item.imagen === 'object' && item.imagen?.url) && (
+                    <Carousel
+                      slideSize={{ base: '100%', sm: '50%' }}
+                      slideGap={{ base: 'xl', sm: 2 }}
+                      emblaOptions={{ align: 'start', slidesToScroll: 2 }}
+                    >
+                      {noticia.carruselImagenes.map((item, index) =>
+                        item.imagen && typeof item.imagen === 'object' ? (
+                          <Carousel.Slide key={item.imagen.id || index}>
+                            <div style={{ position: 'relative', height: 300, width: '100%' }}>
+                              <Image
+                                src={item.imagen.url}
+                                alt={item.imagen.alt || 'Imagen del carrusel'}
+                                style={{ objectFit: 'cover', borderRadius: 8 }}
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
+                          </Carousel.Slide>
+                        ) : null
+                      )}
+                    </Carousel>
+                )}
                 <Text ta="left" size='38' fw={600} inline c='#83013E'>
                   {noticia?.tituloSecundario2}
                 </Text>
