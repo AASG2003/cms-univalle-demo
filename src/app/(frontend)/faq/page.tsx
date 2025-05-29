@@ -4,7 +4,7 @@ import { Box, Input, Stack, Text, Accordion, Group, Anchor, Button } from '@mant
 import { IconZoom } from '@tabler/icons-react'
 import { FaqResumen } from '@/app/types/faq';
 
-export default function NewsPage() {
+export default function Faq() {
   
   const [faqs, setFaqs] = useState<FaqResumen[]>([]);
 

@@ -17,8 +17,6 @@ export default function NewsPage() {
     fetchNoticias();
   }, []);
 
-  console.log(cursos)
-
   return (
     <div>
       <Box
@@ -40,7 +38,7 @@ export default function NewsPage() {
             justifyItems: 'center',
           }}>
             <Text ta="left" size='40' fw={600} inline c='white' w={"80%"}>
-              ¿Qué te gustaria aprender el día de  hoy?
+              ¿Qué te gustaria aprender el día de hoy?
             </Text>
             <Input placeholder="Ingresa el curso que estas buscando" rightSection={<IconZoom size={16} />} w={"80%"} mt={30} radius={15}/>
           </GridCol>

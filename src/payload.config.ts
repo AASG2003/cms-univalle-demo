@@ -1,7 +1,6 @@
 // storage-adapter-import-placeholder
 import { s3Storage } from '@payloadcms/storage-s3'
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -40,7 +39,7 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: true, // Comentar esta linea para trabaja con almacenamiento local
+        // media: true, // Comentar esta linea para trabaja con almacenamiento local
       },
       bucket: process.env.R2_BUCKET!,
       config: {

@@ -38,14 +38,20 @@ export function Navbar() {
       <Button variant="subtle" size="sm"  color='white' component='a' href='/noticias'>
         Noticias
       </Button>
+      <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
+        Cursos
+      </Button>
     </Group>
   );
 
   const rightButtons = (
     <Group gap="sm">
-      <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
-        Cursos
+      <Button variant="subtle" size="sm" color='white' component='a' href='/personvue'>
+        Certificaciones
       </Button>
+      {/* <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
+        Person Vue
+      </Button> */}
       <Button variant="subtle" size="sm"  color='white' component='a' href='/faq'>
         FAQ
       </Button>
