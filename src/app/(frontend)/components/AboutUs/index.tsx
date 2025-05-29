@@ -96,7 +96,7 @@ export function AboutUs() {
               que impulsa la formación práctica en programación, inteligencia artificial, 
               desarrollo web y software. 
             </Text>
-            <Button variant="filled" color="#83013E" radius="xl">Conoce mas</Button>
+            <Button variant="filled" color="#83013E" radius="xl" component='a' href='/personvue'>Conoce mas</Button>
           </Container>
         </Grid.Col>
 
@@ -154,7 +154,7 @@ export function AboutUs() {
                 }}
               >
                 <Text c='#83013E' ta="center" fw={600}>1mil+</Text>
-                <Text ta="center">Estudiantes</Text>
+                <Text ta="center">Certificaciones</Text>
             </Card>
             <Card
                 shadow="lg"

@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation';
-import { Anchor, Box, Button, Flex, Grid, GridCol, Image, Paper, Stack, Text } from '@mantine/core'
+import { Anchor, Box, Button, Flex, Grid, GridCol, Image, Stack, Text } from '@mantine/core'
 import { notFound } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import '@mantine/carousel/styles.css';

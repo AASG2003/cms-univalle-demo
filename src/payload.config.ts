@@ -10,11 +10,13 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { News } from './collections/News'
+import { Academies } from './collections/Academy'
 
 import { en } from '@payloadcms/translations/languages/en'
 import { es } from '@payloadcms/translations/languages/es'
 import { Courses } from './collections/Courses';
 import { Faq } from './collections/Faq';
+import { Testimonials } from './collections/Testimony';
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,12 +28,12 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, News, Courses, Faq],
+  collections: [Academies, Media, News, Courses, Faq, Users, Testimonials],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
-  },
+  },  
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
