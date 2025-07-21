@@ -47,7 +47,7 @@ export function Navbar() {
   const rightButtons = (
     <Group gap="sm">
       <Button variant="subtle" size="sm" color='white' component='a' href='/personvue'>
-        Certificaciones
+        Person Vue
       </Button>
       {/* <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
         Person Vue
