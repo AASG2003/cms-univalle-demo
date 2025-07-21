@@ -41,7 +41,7 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        // media: true, // Comentar esta linea para trabaja con almacenamiento local
+        media: true, // Comentar esta linea para trabaja con almacenamiento local
       },
       bucket: process.env.R2_BUCKET!,
       config: {
