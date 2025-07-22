@@ -1,8 +1,10 @@
 'use client';
 
 import '@mantine/carousel/styles.css'; 
-import { Button, Card, Container, Grid, Group, Image, Text, Stack, Box } from '@mantine/core';
-import { JSX } from 'react';
+import styles from './styles.module.css';
+import { motion } from 'framer-motion';
+import { Button, Card, Container, Grid, Group, Image, Text, Stack, Box, rem, Title } from '@mantine/core';
+import { JSX, useState } from 'react';
 
 // Types
 interface StatData {
@@ -90,6 +92,8 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({ src, alt = 'Image', s
 );
 
 export function AboutUs(): JSX.Element {
+  
+  const [flipped, setFlipped] = useState(false);
   const mainStats: StatData[] = STATS_DATA.slice(0, 1);
   const sideStats: StatData[] = STATS_DATA.slice(1);
 
@@ -111,17 +115,107 @@ export function AboutUs(): JSX.Element {
               Academias de tecnología e Innovación Univalle
             </Text>
             
-            <Box style={{ position: 'relative' }}>
-              <ResponsiveImage
-                src="/sedeSCfigma.png"
-                alt="Sede"
-                style={{ borderRadius: '15px' }}
-              />
-              
+            <Box style={{
+              display: 'flex',
+              justifyContent: 'center', // horizontal
+              height: '100%',           // asegúrate que tenga altura suficiente
+              width: '100%',
+              position: 'relative',
+            }}>
+              <Box
+                style={{
+                  width: 'clamp(280px, 80vw, 500px)', // mínimo 280px, máximo 500px, preferido 90% del viewport
+                  height: 'clamp(340px, 90vw, 600px)', // se escala con el ancho
+                  perspective: rem(1000),
+                }}
+                onMouseEnter={() => setFlipped(true)}
+                onMouseLeave={() => setFlipped(false)}
+              >
+                <motion.div
+                  animate={{ rotateY: flipped ? 180 : 0 }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'relative',
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  {/* Cara frontal (imagen) */}
+                  <Box
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: rem(12),
+                      overflow: 'hidden',
+                      backfaceVisibility: 'hidden',
+                    }}
+                  >
+                    <Image
+                      src="/sedeSCfigma.png"
+                      alt="Sede"
+                      style={{
+                        objectFit: 'cover',
+                        borderRadius: rem(12),
+                      }}
+                    />
+                  </Box>
+
+                  {/* Cara trasera (texto) */}
+                  <Box
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: rem(12),
+                      backgroundColor: 'white',
+                      color: '#212529',
+                      display: 'flex',
+                      backfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      padding: rem(16),
+                      textAlign: 'center',
+                    }}
+                  >
+                    <Stack gap="md">
+                      <Title order={3} size={"h3"} ta="center">
+                        Competencias Certificadas en UNIVALLE
+                      </Title>
+
+                      <Text size="md" ta="justify">
+                        Las <strong>Competencias Certificadas</strong> son habilidades clave exigidas en el ámbito
+                        laboral, validadas mediante procesos de <strong>certificación y capacitación</strong> respaldados por
+                        UNIVALLE y organizaciones multinacionales reconocidas.
+                      </Text>
+
+                      <ul style={{ paddingLeft: '1.25rem' }}>
+                        <li>
+                          <Text size="md" component="span">
+                            Potenciar el <strong>perfil del graduado</strong> con certificados avalados por academias
+                            profesionales.
+                          </Text>
+                        </li>
+                        <li>
+                          <Text size="md" component="span">
+                            Ofrecer una <strong>formación actualizada</strong> y conectada con las demandas del mercado.
+                          </Text>
+                        </li>
+                        <li>
+                          <Text size="md" component="span">
+                            Brindar acceso a <strong>certificaciones profesionales</strong> con beneficios financieros
+                            derivados de convenios institucionales.
+                          </Text>
+                        </li>
+                      </ul>
+                    </Stack>
+                  </Box>
+                </motion.div>
+              </Box>
               {/* Floating Stats Card - Hidden on base (mobile) */}
               <Box 
                 display={{ base: 'none', md: 'block' }}
-                style={{ position: 'relative', bottom:'500px'}}
+                style={{ position: 'relative', left:'100px'}}
               >
                 <StatCard stat={mainStats[0]} isFloating />
               </Box>
@@ -138,7 +232,7 @@ export function AboutUs(): JSX.Element {
         <Grid.Col span={{ base: 12, md: 6, lg: 4 }}>
           <Stack gap="xl" h="100%" justify="space-between">
             <Text ta="center" size="lg" fw={500}>
-              Centro Person Vue autorizado para rendir examenes.
+              Mejora el Perfil del <br/> Graduado de la UNIVALLE
             </Text>
             
             <ResponsiveImage
@@ -148,15 +242,16 @@ export function AboutUs(): JSX.Element {
             />
             
             <Text 
-              ta="left" 
+              ta="center" 
               style={{ 
                 lineHeight: 1.4,
-                fontSize: 'clamp(0.9rem, 2vw, 1rem)'
+                fontSize: 'clamp(0.9rem, 2vw, 1rem)',
               }}
             >
-              Academias TI UNIVALLE es un espacio de innovación tecnológica
-              que impulsa la formación práctica en programación, inteligencia artificial, 
-              desarrollo web y software.
+              Las competencias certificadas permiten demostrar habilidades clave exigidas en el entorno profesional. 
+              Gracias a convenios con organizaciones prestigiosas, UNIVALLE integra estas certificaciones en sus materias, 
+              brindando a los estudiantes ventajas como un currículo actualizado, mejor empleabilidad, 
+              y acceso simplificado a exámenes de certificación reconocidos.
             </Text>
             
             <Group justify="center">

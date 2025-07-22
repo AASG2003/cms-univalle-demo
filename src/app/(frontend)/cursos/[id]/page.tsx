@@ -63,7 +63,7 @@ export default function Noticia() {
               </Text>
               <Flex gap={50}>
                 <Text>
-                  {curso?.nivel}
+                  {curso?.academia}
                 </Text>
                 <Text>
                   {curso?.duracionHoras} horas 
@@ -90,6 +90,6 @@ export default function Noticia() {
       </div>
     )
   } catch {
-    return notFound
+    return notFound;
   }
 }

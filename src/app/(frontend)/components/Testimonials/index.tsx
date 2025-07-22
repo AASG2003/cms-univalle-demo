@@ -71,7 +71,6 @@ export function Testimonials(){
             height:'auto',
             width:'100%',
           }}
-          withIndicators
         >
           {/* Mapeamos el array de testimonios para crear un Slide por cada uno */}
           {testimonials.map((testimonial) => (

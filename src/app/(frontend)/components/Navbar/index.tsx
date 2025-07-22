@@ -10,6 +10,7 @@ import {
   Text,
   useMantineTheme,
   Flex,
+  Stack,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
@@ -30,33 +31,33 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const leftButtons = (
-    <Group gap="sm">
-      <Button variant="subtle" size="sm"  color='white' component='a' href='/'>
-        Inicio
-      </Button>
-      <Button variant="subtle" size="sm"  color='white' component='a' href='/noticias'>
-        Noticias
-      </Button>
-      <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
-        Cursos
-      </Button>
-    </Group>
+  const linkButton = (label: string, href: string) => (
+    <Button
+      key={href}
+      variant="subtle"
+      size="sm"
+      color="white"
+      component="a"
+      href={href}
+      fullWidth={isMobile}
+    >
+      {label}
+    </Button>
   );
 
-  const rightButtons = (
-    <Group gap="sm">
-      <Button variant="subtle" size="sm" color='white' component='a' href='/personvue'>
-        Person Vue
-      </Button>
-      {/* <Button variant="subtle" size="sm" color='white' component='a' href='/cursos'>
-        Person Vue
-      </Button> */}
-      <Button variant="subtle" size="sm"  color='white' component='a' href='/faq'>
-        FAQ
-      </Button>
-    </Group>
-  );
+  const leftLinks = [
+    { label: 'Inicio', href: '/' },
+    { label: 'Noticias', href: '/noticias' },
+    { label: 'Cursos', href: '/cursos' },
+  ];
+
+  const rightLinks = [
+    { label: 'Person Vue', href: '/personvue' },
+    { label: 'FAQ', href: '/faq' },
+  ];
+
+  const leftButtons = leftLinks.map(link => linkButton(link.label, link.href));
+  const rightButtons = rightLinks.map(link => linkButton(link.label, link.href));
 
   return (
     <>
@@ -67,37 +68,33 @@ export function Navbar() {
         w="100%"
         px="md"
         py="sm"
-        style={{ 
-          position: 'fixed',
-          top: 0,
-          width: '100%',
+        style={{
           zIndex: 1000,
           transition: 'background-color 0.3s ease',
           backgroundColor: atTop ? 'transparent' : '#83013E',
-          borderBottom: 'none',
         }}
       >
         <Grid align="center">
           {!isMobile && (
             <Grid.Col span={4}>
               <Flex justify="left">
-                {leftButtons}
+                <Group gap="sm">{leftButtons}</Group>
               </Flex>
             </Grid.Col>
           )}
 
-          <Grid.Col span={isMobile ? 6 : 4} ta={isMobile ? "left":"center"}>
-            <Text fw={700} fz="lg" c='white'>
+          <Grid.Col span={isMobile ? 6 : 4} ta="center">
+            <Text fw={700} fz="lg" c="white">
               Academias TI
             </Text>
           </Grid.Col>
 
           <Grid.Col span={isMobile ? 6 : 4}>
-            <Flex justify={'flex-end'}>
+            <Flex justify="flex-end">
               {isMobile ? (
-                <Burger opened={opened} onClick={toggle} color='white' aria-label="Abrir menu"/>
+                <Burger opened={opened} onClick={toggle} color="white" aria-label="Abrir menú" />
               ) : (
-                rightButtons
+                <Group gap="sm">{rightButtons}</Group>
               )}
             </Flex>
           </Grid.Col>
@@ -114,15 +111,17 @@ export function Navbar() {
         size="md"
         styles={{
           header: {
-            color: 'black',   // Título "Menú"
+            color: 'white',
+            backgroundColor: '#83013E',
           },
           body: {
-            color: 'black',   // Texto dentro del drawer
+            color: 'white',
+            backgroundColor: '#83013E',
           },
         }}
       >
-        <Box mb="md" color='black'>
-        {leftButtons}
+        <Box mb="md">
+          {leftButtons}
         </Box>
         {rightButtons}
       </Drawer>
