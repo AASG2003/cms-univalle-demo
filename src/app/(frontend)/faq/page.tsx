@@ -90,7 +90,7 @@ const FaqItem: React.FC<{ faq: FaqResumen }> = ({ faq }) => (
 )
 
 // Componente principal optimizado
-export default function Faq({ limit = 10 }: FaqProps) {
+export default function Faq() {
   const [faqs, setFaqs] = useState<FaqResumen[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -102,7 +102,7 @@ export default function Faq({ limit = 10 }: FaqProps) {
       setLoading(true)
       setError(null)
       
-      const res = await fetch(`/local_api/faq?limit=${limit}`)
+      const res = await fetch(`/local_api/faq?limit=10}`)
       
       if (!res.ok) {
         throw new Error(`Error ${res.status}: ${res.statusText}`)
@@ -116,7 +116,7 @@ export default function Faq({ limit = 10 }: FaqProps) {
     } finally {
       setLoading(false)
     }
-  }, [limit])
+  }, [])
 
   useEffect(() => {
     fetchFaqs()
